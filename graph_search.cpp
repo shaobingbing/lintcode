@@ -52,6 +52,7 @@ bool findHer(vector<string> &maze) {
 
 void isExist(vector<string> &maze,vector<vector<bool>> &mark, int x_1, int y_1, int &x_2, int &y_2,int &len, int &width)
 {
+	cout << "x_1: "<< x_1 << ", y_1: " << y_1 << endl;
 	if(x_1 < 0 || x_1 >= len || y_1 < 0 || y_1 >= width) return ;
 	if(x_1 == x_2 && y_1 == y_2) 
 	{	
@@ -60,14 +61,13 @@ void isExist(vector<string> &maze,vector<vector<bool>> &mark, int x_1, int y_1, 
 	}
 	if(maze[x_1][y_1] == '*') 
 	{
-		
 		mark[x_1][y_1] = true;
 		return;
 	}
 	if(mark[x_1][y_1] == true) return;
 	mark[x_1][y_1] = true;
-	for(int i = -1; i <= 1; i++)
-		for(int j = -1; j <= 1; j ++)
-			if(i !=0 || j !=0)
-				isExist(maze, mark, x_1 + i, y_1 + j, x_2, y_2, len, width);
+	isExist(maze, mark, x_1 + 0, y_1 + 1, x_2, y_2, len, width);
+	isExist(maze, mark, x_1 + 0, y_1 - 1, x_2, y_2, len, width);
+	isExist(maze, mark, x_1 + 1, y_1 + 0, x_2, y_2, len, width);
+	isExist(maze, mark, x_1 - 1, y_1 + 0, x_2, y_2, len, width);
 }
