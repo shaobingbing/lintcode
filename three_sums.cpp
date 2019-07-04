@@ -10,7 +10,7 @@ vector<vector<int>> three_sums(vector<int> &a);
 
 int main()
 {
-	vector<int> a = {-1,0,1,2,-1,-4};
+	vector<int> a = {1,0,-1,-1,-1,-1,0,1,1,1};
 	vector<vector<int>> res = three_sums(a);
 	print(res);
 	return 0;
@@ -21,6 +21,7 @@ vector<vector<int>> three_sums(vector<int> &a)
 {	
 	vector<vector<int>> res;
 	sort(a.begin(), a.end());
+	print(a);
 	int div = 0;
 	int piv = 0;
 	for(int i = 0; i < a.size(); i++)
@@ -30,10 +31,9 @@ vector<vector<int>> three_sums(vector<int> &a)
 			piv = i;
 		}
 	}
-	int i = 0;
 	for(int i = 0; i <= piv; i++)
 	{
-		if(i > 1&& a[i] == a[i-1])
+		if(i > 0&& a[i] == a[i-1])
 			continue;
 		int j = i + 1;
 		int k = a.size() - 1;
@@ -42,6 +42,7 @@ vector<vector<int>> three_sums(vector<int> &a)
 		{
 			if(a[j] + a[k] == target)
 			{
+				cout << "i:" << i << endl;
 				vector<int> temp = {a[i], a[j], a[k]};
 				res.push_back(temp);
 				while(a[j]==a[j+1])
